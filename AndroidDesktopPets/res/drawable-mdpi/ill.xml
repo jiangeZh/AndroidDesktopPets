@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<animation-list
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:oneshot="true"
+  >
+    <item android:drawable="@drawable/pet_cat_ill1" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill2" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill3" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill4" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill5" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill6" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill7" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill8" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill9" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill10" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_ill11" android:duration="150"></item>
+    
+</animation-list>
