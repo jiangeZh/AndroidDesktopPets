@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory android:title="宠物信息" >
+        <EditTextPreference
+            android:key="name_key"
+            android:defaultValue=""
+            android:summary=""
+            android:title="姓名"
+            android:icon="@drawable/pet_name"/>
+        <ListPreference
+            android:key="sex_key"
+            android:defaultValue=""
+            android:title="性别"
+            android:summary=""
+            android:entries="@array/sex_lists"
+            android:entryValues="@array/sex_lists"
+            android:dialogTitle="选择性别"
+            android:icon="@drawable/pet_sex"/>
+        <EditTextPreference
+            android:key="year_key"
+            android:defaultValue=""
+            android:summary=""
+            android:title="年龄"
+            android:icon="@drawable/birthday"/>
+        <ListPreference
+            android:key="character_key"
+            android:defaultValue=""
+            android:title="性格"
+            android:summary=""
+            android:entries="@array/character_lists"
+            android:entryValues="@array/character_lists"
+            android:dialogTitle="选择性格"
+            android:icon="@drawable/character"
+            />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="用户权限设置">
+        <CheckBoxPreference
+            android:key="start_key"
+            android:defaultValue=""
+            android:summary="随机启动并不会影响系统正常使用"
+            android:title="是否随机启动"
+            />
+        <CheckBoxPreference
+            android:key="notice_key"
+            android:defaultValue=""
+            android:summary="勾选可更方便的接受到微信通知"
+            android:title="是否允许获取微信通知"
+            />
+        <CheckBoxPreference
+            android:key="music_key"
+            android:defaultValue=""
+            android:summary="音乐可以使得宠物更有趣哦"
+            android:title="是否开启音效"
+            />
+    </PreferenceCategory>
+</PreferenceScreen>
