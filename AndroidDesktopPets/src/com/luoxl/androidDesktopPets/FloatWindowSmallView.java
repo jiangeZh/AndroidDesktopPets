@@ -81,6 +81,8 @@ public class FloatWindowSmallView extends LinearLayout {
 	private ImageView percentView;
 
 	private boolean flag = true;
+	
+	private boolean isOpenBigWin = false;
 
 	public FloatWindowSmallView(Context context) {
 		super(context);
@@ -128,8 +130,19 @@ public class FloatWindowSmallView extends LinearLayout {
 		case MotionEvent.ACTION_UP:
 			// 如果手指离开屏幕时，xDownInScreen和xInScreen相等，且yDownInScreen和yInScreen相等，则视为触发了单击事件。
 			if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
-				openBigWindow();
+				if (!isOpenBigWin) {
+					openBigWindow();
+					isOpenBigWin = true;
+				}
+				else {
+					closeBigWindow();
+					isOpenBigWin = false;
+				}					
 			} else {
+				if (isOpenBigWin) {
+					closeBigWindow();
+					isOpenBigWin = false;
+				}
 				updateViewPosition3();
 			}
 			percentView.setBackgroundResource(R.drawable.stay);
@@ -224,7 +237,7 @@ public class FloatWindowSmallView extends LinearLayout {
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				percentView.setScaleX(x);  //设置镜像
-				percentView.setBackground(getResources().getDrawable(R.drawable.pet_cat_lazy1));
+				percentView.setBackground(getResources().getDrawable(R.drawable.lovely_info_win));
 			}
 		});
 		set.addAnimation(outAnim);
@@ -236,6 +249,13 @@ public class FloatWindowSmallView extends LinearLayout {
 	 */
 	private void openBigWindow() {
 		MyWindowManager.createBigWindow(getContext());
+	}
+	
+	/**
+	 * 关闭大悬浮窗
+	 */
+	private void closeBigWindow() {
+		MyWindowManager.removeBigWindow(getContext());
 	}
 
 	/**

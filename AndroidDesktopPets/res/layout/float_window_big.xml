@@ -4,42 +4,42 @@
     android:id="@+id/big_window_layout"
 	android:layout_width="200dip"
 	android:layout_height="50dip"
-	android:background="@drawable/pet_btns_bg"
+	android:background="@drawable/toolbar_bg"
 	android:orientation="horizontal"
     >
     <Button 
-        android:id="@+id/learn"
+        android:id="@+id/home"
         android:layout_width="40dip"
         android:layout_height="40dip"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/zzz_learn_normal"
+        android:background="@drawable/toolbar_home"
+        />
+	<Button 
+        android:id="@+id/clock"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/wake_icon"
         />
     <Button 
-        android:id="@+id/play"
+        android:id="@+id/bluetooth"
         android:layout_width="40dip"
         android:layout_height="40dip"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/zzz_play_normal"
+        android:background="@drawable/play_bluetooth"
         />
     <Button 
-        android:id="@+id/sleep"
+        android:id="@+id/set"
         android:layout_width="40dip"
         android:layout_height="40dip"
         android:layout_gravity="center_vertical"
-       android:background="@drawable/zzz_sleep_normal"
+       android:background="@drawable/toolbar_set"
         />
     <Button 
-        android:id="@+id/back"
+        android:id="@+id/exit"
         android:layout_width="40dip"
         android:layout_height="40dip"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/yellow_no"
-        />
-    <Button 
-        android:id="@+id/close"
-        android:layout_width="40dip"
-        android:layout_height="40dip"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/zzz_exit_normal"
+        android:background="@drawable/toolbar_exit"
         />
 </LinearLayout>

@@ -101,18 +101,47 @@ public class MyWindowManager {
 			bigWindow = new FloatWindowBigView(context);
 			if (bigWindowParams == null) {
 				bigWindowParams = new LayoutParams();
-				bigWindowParams.x = screenWidth / 2 - FloatWindowBigView.viewWidth/2;
-				bigWindowParams.y = screenHeight - 2*FloatWindowBigView.viewHeight;
 				bigWindowParams.type = LayoutParams.TYPE_PHONE;
 				bigWindowParams.format = PixelFormat.RGBA_8888;
+				bigWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
 				bigWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
 				bigWindowParams.width = FloatWindowBigView.viewWidth;
 				bigWindowParams.height = FloatWindowBigView.viewHeight;
 			}
+			bigWindowParams.x = smallWindowParams.x - FloatWindowSmallView.viewWidth;
+			bigWindowParams.y = smallWindowParams.y + FloatWindowSmallView.viewHeight;
 			windowManager.addView(bigWindow, bigWindowParams);
 		}
 	}
 
+	/**
+	 * 创建一个蓝牙链接窗口
+	 * 
+	 * @param context
+	 *            必须为应用程序的Context.
+	 */
+	public static void createBluetoothWindow(Context context) {
+		WindowManager windowManager = getWindowManager(context);
+		int screenWidth = windowManager.getDefaultDisplay().getWidth();
+		int screenHeight = windowManager.getDefaultDisplay().getHeight();
+		if (bigWindow == null) {
+			bigWindow = new FloatWindowBigView(context);
+			if (bigWindowParams == null) {
+				bigWindowParams = new LayoutParams();
+				bigWindowParams.type = LayoutParams.TYPE_PHONE;
+				bigWindowParams.format = PixelFormat.RGBA_8888;
+				bigWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
+				bigWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
+				bigWindowParams.width = FloatWindowBigView.viewWidth;
+				bigWindowParams.height = FloatWindowBigView.viewHeight;
+			}
+			bigWindowParams.x = smallWindowParams.x - FloatWindowSmallView.viewWidth;
+			bigWindowParams.y = smallWindowParams.y + FloatWindowSmallView.viewHeight;
+			windowManager.addView(bigWindow, bigWindowParams);
+		}
+	}
+	
+	
 	/**
 	 * 将大悬浮窗从屏幕上移除。
 	 * 

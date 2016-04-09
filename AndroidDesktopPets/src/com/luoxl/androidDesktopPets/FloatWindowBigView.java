@@ -1,6 +1,8 @@
 package com.luoxl.androidDesktopPets;
 
 import android.content.Context;
+import android.content.Intent;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,9 +26,12 @@ public class FloatWindowBigView extends LinearLayout {
 		View view = findViewById(R.id.big_window_layout);
 		viewWidth = view.getLayoutParams().width;
 		viewHeight = view.getLayoutParams().height;
-		Button close = (Button) findViewById(R.id.close);
-		Button back = (Button) findViewById(R.id.back);
-		close.setOnClickListener(new OnClickListener() {
+		Button home = (Button) findViewById(R.id.home);
+		Button clock = (Button) findViewById(R.id.clock);
+		Button bluetooth = (Button) findViewById(R.id.bluetooth);
+		Button set = (Button) findViewById(R.id.set);
+		Button exit = (Button) findViewById(R.id.exit);
+/*		close.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// 点击关闭悬浮窗的时候，移除所有悬浮窗，并停止Service
@@ -35,8 +40,47 @@ public class FloatWindowBigView extends LinearLayout {
 //				Intent intent = new Intent(getContext(), FloatWindowService.class);
 //				context.stopService(intent);
 			}
+		});*/
+		
+		home.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// 点击时，显示宠物属性
+				Intent petInfo = new Intent(context, ShowPetInfoActivity.class);
+				petInfo.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+				context.startActivity(petInfo);
+			}
 		});
-		back.setOnClickListener(new OnClickListener() {
+		
+		clock.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// 点击闹钟时，开启系统闹钟
+				Intent alarmas = new Intent(AlarmClock.ACTION_SET_ALARM);
+				alarmas.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+				context.startActivity(alarmas);  
+			}
+		});
+		
+		bluetooth.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// 点击游戏时，显示蓝牙互动窗口
+				//MyWindowManager.
+			}
+		});
+		
+		set.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// 点击设置时，跳转至设置窗口
+				Intent settings = new Intent(context, Setting.class);
+				settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+				context.startActivity(settings);
+			}
+		});
+		
+		exit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// 点击返回的时候，移除大悬浮窗，创建小悬浮窗

@@ -73,14 +73,6 @@ public class FloatWindowService extends Service {
 					}
 				});
 			}
-			// 当前界面是桌面，且有悬浮窗显示，则更新内存数据。
-			else if (isHome() && MyWindowManager.isWindowShowing()) {
-				handler.post(new Runnable() {
-					@Override
-					public void run() {
-					}
-				});
-			}
 		}
 
 	}
@@ -88,6 +80,7 @@ public class FloatWindowService extends Service {
 	/**
 	 * 判断当前界面是否是桌面
 	 */
+	@SuppressWarnings("deprecation")
 	private boolean isHome() {
 		ActivityManager mActivityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 		List<RunningTaskInfo> rti = mActivityManager.getRunningTasks(1);
