@@ -30,6 +30,7 @@ public class FloatWindowBigView extends LinearLayout {
 		Button clock = (Button) findViewById(R.id.clock);
 		Button bluetooth = (Button) findViewById(R.id.bluetooth);
 		Button set = (Button) findViewById(R.id.set);
+		Button next = (Button) findViewById(R.id.next);
 		Button exit = (Button) findViewById(R.id.exit);
 /*		close.setOnClickListener(new OnClickListener() {
 			@Override
@@ -77,6 +78,14 @@ public class FloatWindowBigView extends LinearLayout {
 				Intent settings = new Intent(context, Setting.class);
 				settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
 				context.startActivity(settings);
+			}
+		});
+		
+		next.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// 点击next时，切换宠物模型
+				MyWindowManager.changePetModel(context);
 			}
 		});
 		

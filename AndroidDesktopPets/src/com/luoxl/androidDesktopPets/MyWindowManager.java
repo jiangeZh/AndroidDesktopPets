@@ -193,5 +193,15 @@ public class MyWindowManager {
 		}
 		return mActivityManager;
 	}
+	
+	/**
+	 * 改变宠物模型
+	 * 
+	 * @param context
+	 *            必须为应用程序的Context.
+	 */
+	public static void changePetModel(Context context) {
+		smallWindow.changePetModel();
+	}
 
 }
