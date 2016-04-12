@@ -1,2 +1,12 @@
-# AndroidDesktopPets
-Desktop Pets for Android
+#项目名称
+Android桌面宠物
+
+#功能说明
+- 悬浮在Android手机桌面上，能够自动贴边
+- 能跟随手指移动
+- 具有多种动效和表情
+- 能定义名字等宠物属性
+- 闹钟式的提醒功能
+- 随机启动
+- 多种宠物模型选择
+- 能使用蓝牙进行宠物结对
