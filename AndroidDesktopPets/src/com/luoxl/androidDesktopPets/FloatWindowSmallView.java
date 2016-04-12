@@ -4,8 +4,10 @@ import java.lang.reflect.Field;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -78,15 +80,12 @@ public class FloatWindowSmallView extends LinearLayout {
 
 	private View view;
 
-	private ImageView petView;
+	public static ImageView petView;
 
-	private boolean flag = true;
+	public static boolean flag = true;
 	
-	/**
-	 * 是否开启大悬浮窗
-	 */
 	private boolean isOpenBigWin = false;
-	
+
 	private int[] petStayModelID = {
 			R.drawable.cat_stay,
 			R.drawable.pika_stay,
@@ -101,9 +100,9 @@ public class FloatWindowSmallView extends LinearLayout {
 			R.drawable.dog_run
 	};
 	
-	private int petIndex = 0;
+	private static int petIndex = 0;
 	private int petNum = 4;
-
+	
 	public FloatWindowSmallView(Context context) {
 		super(context);
 		windowManager = (WindowManager) context
@@ -112,11 +111,9 @@ public class FloatWindowSmallView extends LinearLayout {
 		view = findViewById(R.id.small_window_layout);
 		viewWidth = view.getLayoutParams().width;
 		viewHeight = view.getLayoutParams().height;
-		petView = (ImageView) findViewById(R.id.percent);
-
-		petView.setBackgroundResource(petStayModelID[petIndex]);
-		((AnimationDrawable) petView.getBackground()).start();
-
+		petView = (ImageView) findViewById(R.id.percent);	
+		petView.setBackgroundResource(R.drawable.stay);
+		new NormalTask().execute();
 		DisplayMetrics outMetrics = new DisplayMetrics();
 		windowManager.getDefaultDisplay().getMetrics(outMetrics);
 		swidth = outMetrics.widthPixels;
@@ -133,6 +130,13 @@ public class FloatWindowSmallView extends LinearLayout {
 			}
 			petView.setBackgroundResource(petRunModelID[petIndex]);
 			((AnimationDrawable) petView.getBackground()).start();
+			//SingleAnimaion.feed.play();
+			
+			String is;
+			if(((AnimationDrawable) petView.getBackground()).isRunning())
+				is = "isRunning!";
+				else is = "notRunning!";
+			Log.d("1",is);
 			// 手指按下时记录必要数据,纵坐标的值都需要减去状态栏高度
 			xInView = event.getX();
 			yInView = event.getY();
@@ -166,7 +170,10 @@ public class FloatWindowSmallView extends LinearLayout {
 				updateViewPosition3();
 			}
 			petView.setBackgroundResource(petStayModelID[petIndex]);
-			((AnimationDrawable) petView.getBackground()).start();
+			//((AnimationDrawable) petView.getBackground()).start();
+			//((AnimationDrawable) petView.getBackground()).stop();
+			//SingleAnimaion.stay.play();
+			
 			break;
 		default:
 			break;
@@ -226,6 +233,7 @@ public class FloatWindowSmallView extends LinearLayout {
 
 	public void doTranslateAnimation(final float x) {
 		AnimationSet set = new AnimationSet(true);
+		flag = false;
 		TranslateAnimation outAnim = new TranslateAnimation(
 				TranslateAnimation.RELATIVE_TO_SELF, 0,
 				TranslateAnimation.RELATIVE_TO_PARENT, x,
@@ -258,6 +266,7 @@ public class FloatWindowSmallView extends LinearLayout {
 			public void onAnimationEnd(Animation animation) {
 				petView.setScaleX(x);  //设置镜像
 				petView.setBackground(getResources().getDrawable(R.drawable.lovely_info_win));
+				
 			}
 		});
 		set.addAnimation(outAnim);
@@ -302,6 +311,10 @@ public class FloatWindowSmallView extends LinearLayout {
 		petIndex = petIndex%petNum;
 		petView.setBackgroundResource(petStayModelID[petIndex]);
 		((AnimationDrawable) petView.getBackground()).start();
+	}
+	
+	public static int getPetIndex() {
+		return petIndex;
 	}
 
 }
