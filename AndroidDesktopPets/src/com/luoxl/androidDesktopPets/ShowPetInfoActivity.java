@@ -25,10 +25,10 @@ public class ShowPetInfoActivity extends Activity {
     }
 
     private void initView() {
-        btnSetting = (Button)findViewById(R.id.btn_setting);
-        btnShow = (Button)findViewById(R.id.btn_show);
-        btnSetting.setOnClickListener(buttonListener);
-        btnShow.setOnClickListener(buttonListener);
+        //btnSetting = (Button)findViewById(R.id.btn_setting);
+        //btnShow = (Button)findViewById(R.id.btn_show);
+        //btnSetting.setOnClickListener(buttonListener);
+        //btnShow.setOnClickListener(buttonListener);
 
         name = (TextView)findViewById(R.id.name);
         sex = (TextView)findViewById(R.id.sex);
@@ -36,6 +36,7 @@ public class ShowPetInfoActivity extends Activity {
         character = (TextView)findViewById(R.id.character);
     }
 
+    /*
     private OnClickListener buttonListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -51,6 +52,7 @@ public class ShowPetInfoActivity extends Activity {
             }
         }
     };
+*/
 
     private void showSettingInfo() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
