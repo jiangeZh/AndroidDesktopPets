@@ -1,8 +1,5 @@
 package com.luoxl.androidDesktopPets;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -10,19 +7,18 @@ import android.graphics.PixelFormat;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
-import android.widget.TextView;
 
 public class MyWindowManager {
 
 	/**
 	 * 小悬浮窗View的实例
 	 */
-	private static FloatWindowSmallView smallWindow;
+	private static FloatWindowPetView smallWindow;
 
 	/**
 	 * 大悬浮窗View的实例
 	 */
-	private static FloatWindowBigView bigWindow;
+	private static FloatWindowToolbarView bigWindow;
 
 	/**
 	 * 小悬浮窗View的参数
@@ -55,7 +51,7 @@ public class MyWindowManager {
 		int screenWidth = windowManager.getDefaultDisplay().getWidth();
 		int screenHeight = windowManager.getDefaultDisplay().getHeight();
 		if (smallWindow == null) {
-			smallWindow = new FloatWindowSmallView(context);
+			smallWindow = new FloatWindowPetView(context);
 			if (smallWindowParams == null) {
 				smallWindowParams = new LayoutParams();
 				smallWindowParams.type = LayoutParams.TYPE_PHONE;
@@ -63,8 +59,8 @@ public class MyWindowManager {
 				smallWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL
 						| LayoutParams.FLAG_NOT_FOCUSABLE;
 				smallWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
-				smallWindowParams.width = FloatWindowSmallView.viewWidth;
-				smallWindowParams.height = FloatWindowSmallView.viewHeight;
+				smallWindowParams.width = FloatWindowPetView.viewWidth;
+				smallWindowParams.height = FloatWindowPetView.viewHeight;
 				smallWindowParams.x = screenWidth;
 				smallWindowParams.y = screenHeight / 2;
 			}
@@ -98,18 +94,18 @@ public class MyWindowManager {
 		int screenWidth = windowManager.getDefaultDisplay().getWidth();
 		int screenHeight = windowManager.getDefaultDisplay().getHeight();
 		if (bigWindow == null) {
-			bigWindow = new FloatWindowBigView(context);
+			bigWindow = new FloatWindowToolbarView(context);
 			if (bigWindowParams == null) {
 				bigWindowParams = new LayoutParams();
 				bigWindowParams.type = LayoutParams.TYPE_PHONE;
 				bigWindowParams.format = PixelFormat.RGBA_8888;
 				bigWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
 				bigWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
-				bigWindowParams.width = FloatWindowBigView.viewWidth;
-				bigWindowParams.height = FloatWindowBigView.viewHeight;
+				bigWindowParams.width = FloatWindowToolbarView.viewWidth;
+				bigWindowParams.height = FloatWindowToolbarView.viewHeight;
 			}
-			bigWindowParams.x = smallWindowParams.x - FloatWindowSmallView.viewWidth;
-			bigWindowParams.y = smallWindowParams.y + FloatWindowSmallView.viewHeight;
+			bigWindowParams.x = smallWindowParams.x - FloatWindowPetView.viewWidth;
+			bigWindowParams.y = smallWindowParams.y + FloatWindowPetView.viewHeight;
 			windowManager.addView(bigWindow, bigWindowParams);
 		}
 	}
@@ -125,18 +121,18 @@ public class MyWindowManager {
 		int screenWidth = windowManager.getDefaultDisplay().getWidth();
 		int screenHeight = windowManager.getDefaultDisplay().getHeight();
 		if (bigWindow == null) {
-			bigWindow = new FloatWindowBigView(context);
+			bigWindow = new FloatWindowToolbarView(context);
 			if (bigWindowParams == null) {
 				bigWindowParams = new LayoutParams();
 				bigWindowParams.type = LayoutParams.TYPE_PHONE;
 				bigWindowParams.format = PixelFormat.RGBA_8888;
 				bigWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
 				bigWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
-				bigWindowParams.width = FloatWindowBigView.viewWidth;
-				bigWindowParams.height = FloatWindowBigView.viewHeight;
+				bigWindowParams.width = FloatWindowToolbarView.viewWidth;
+				bigWindowParams.height = FloatWindowToolbarView.viewHeight;
 			}
-			bigWindowParams.x = smallWindowParams.x - FloatWindowSmallView.viewWidth;
-			bigWindowParams.y = smallWindowParams.y + FloatWindowSmallView.viewHeight;
+			bigWindowParams.x = smallWindowParams.x - FloatWindowPetView.viewWidth;
+			bigWindowParams.y = smallWindowParams.y + FloatWindowPetView.viewHeight;
 			windowManager.addView(bigWindow, bigWindowParams);
 		}
 	}

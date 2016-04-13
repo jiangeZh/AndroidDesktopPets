@@ -6,7 +6,7 @@
     android:layout_height="120dip"   
     >  
     <ImageView   
-        android:id="@+id/percent"  
+        android:id="@+id/pet"  
         android:layout_width="fill_parent"  
         android:layout_height="fill_parent"  
         android:gravity="center"

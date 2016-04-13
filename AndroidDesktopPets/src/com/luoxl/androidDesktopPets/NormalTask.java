@@ -5,9 +5,12 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
 
+/*
+ * 随机动画
+ */
 public class NormalTask extends AsyncTask<Void, Void, Boolean> {
 	int count = 0;
-	int index;
+	int animationIndex;
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		// TODO Auto-generated method stub
@@ -21,7 +24,7 @@ public class NormalTask extends AsyncTask<Void, Void, Boolean> {
 				e.printStackTrace();
 			}
 			*/
-			if(FloatWindowSmallView.flag){
+			if(FloatWindowPetView.flag){
 			//if(!((AnimationDrawable) FloatWindowSmallView.petView.getBackground()).isRunning()){
 				try {
 					Thread.sleep(4000);
@@ -35,17 +38,19 @@ public class NormalTask extends AsyncTask<Void, Void, Boolean> {
 		}
 	}
 	protected void onProgressUpdate(Void... params){
-		if(FloatWindowSmallView.flag){
+		if(FloatWindowPetView.flag){
 			count ++;
-			if(FloatWindowSmallView.getPetIndex()==0 && count >= 3 && !((AnimationDrawable) FloatWindowSmallView.petView.getBackground()).isRunning()){
+			int petIndex = FloatWindowPetView.getPetIndex();
+			int animationSize = SingleAnimaion.animationSet[petIndex].length;
+			if(0 == petIndex && count >= 3 && !((AnimationDrawable) FloatWindowPetView.petView.getBackground()).isRunning()){
 				count = 0;
 				//((AnimationDrawable)FloatWindowSmallView.petView.getBackground()).stop();
-				index = (int)(Math.random() * 27);
-				SingleAnimaion.animationSet[index].play();
+				animationIndex = (int)(Math.random() * animationSize);
+				SingleAnimaion.animationSet[petIndex][animationIndex].play();
 			}
-			//else
-			//	SingleAnimaion.stay.play();
-			Log.d("animation index:"+String.valueOf(index),String.valueOf(count));
+			else
+				SingleAnimaion.animationSet[petIndex][0].play();
+			Log.d("animation index:"+String.valueOf(animationIndex),String.valueOf(count));
 		}
 	}
 }
