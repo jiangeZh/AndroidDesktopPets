@@ -10,7 +10,7 @@ public class SingleAnimaion {
 		 * cat
 		 */
 		{
-			new Animation(R.drawable.cat_stay,4000),
+			new Animation(R.drawable.cat_stay,2000),
 			new Animation(R.drawable.cat_afraid,4000),
 			new Animation(R.drawable.cat_angry,3000),
 			new Animation(R.drawable.cat_anti,3000),
@@ -44,21 +44,31 @@ public class SingleAnimaion {
 		 * pika
 		 */
 		{
-			new Animation(R.drawable.pika_stay,4000),
+			new Animation(R.drawable.pika_stay,2000),
+			//new Animation(R.drawable.pika_walk,4000),
+			//new Animation(R.drawable.pika_walk_to_right,4000),
+			//new Animation(R.drawable.pika_dead,4000),
 		},
 	
 		/*
 		 *sponse 
 		 */
 		{
-			new Animation(R.drawable.sponge_stay,4000),
+			new Animation(R.drawable.sponge_stay,2000),
+			//new Animation(R.drawable.sponge_walk,4000),
+			//new Animation(R.drawable.sponge_walk_to_right,4000),
+			//new Animation(R.drawable.sponge_weak,4000),
 		},
 		
 		/*
 		 * dog
 		 */
 		{
-			new Animation(R.drawable.dog_stay,4000),
+			new Animation(R.drawable.dog_stay,2000),
+			//new Animation(R.drawable.dog_bath,4000),
+			//new Animation(R.drawable.dog_feed,4000),
+			//new Animation(R.drawable.dog_lonely,4000),
+			//new Animation(R.drawable.dog_sleep,4000),
 		}
 	};
 }

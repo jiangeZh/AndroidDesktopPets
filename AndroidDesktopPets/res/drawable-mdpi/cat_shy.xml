@@ -4,9 +4,9 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:oneshot="true"
   >
-    <item android:drawable="@drawable/pet_cat_shy1" android:duration="150"></item>
-    <item android:drawable="@drawable/pet_cat_shy2" android:duration="150"></item>
-    <item android:drawable="@drawable/pet_cat_shy3" android:duration="150"></item>
-    <item android:drawable="@drawable/pet_cat_shy4" android:duration="150"></item>
+    <item android:drawable="@drawable/pet_cat_shy1" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_cat_shy2" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_cat_shy3" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_cat_shy4" android:duration="500"></item>
     
 </animation-list>
