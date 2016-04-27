@@ -42,7 +42,7 @@ public class NormalTask extends AsyncTask<Void, Void, Boolean> {
 			count ++;
 			int petIndex = FloatWindowPetView.getPetIndex();
 			int animationSize = SingleAnimaion.animationSet[petIndex].length;
-			if(0 == petIndex && count >= 3 && !((AnimationDrawable) FloatWindowPetView.petView.getBackground()).isRunning()){
+			if(count >= 3 && !((AnimationDrawable) FloatWindowPetView.petView.getBackground()).isRunning()){
 				count = 0;
 				//((AnimationDrawable)FloatWindowSmallView.petView.getBackground()).stop();
 				animationIndex = (int)(Math.random() * animationSize);

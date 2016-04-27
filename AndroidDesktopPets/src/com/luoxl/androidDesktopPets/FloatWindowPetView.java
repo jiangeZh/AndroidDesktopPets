@@ -110,8 +110,8 @@ public class FloatWindowPetView extends LinearLayout {
 		view = findViewById(R.id.small_window_layout);
 		viewWidth = view.getLayoutParams().width;
 		viewHeight = view.getLayoutParams().height;
-		petView = (ImageView) findViewById(R.id.pet);	
-		petView.setBackgroundResource(R.drawable.cat_stay);
+		petView = (ImageView) findViewById(R.id.pet);
+		petView.setBackgroundResource(petStayModelID[petIndex]);
 		new NormalTask().execute();
 		DisplayMetrics outMetrics = new DisplayMetrics();
 		windowManager.getDefaultDisplay().getMetrics(outMetrics);

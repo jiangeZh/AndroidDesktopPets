@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<animation-list
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:oneshot="false"
+  >
+    <item android:drawable="@drawable/pet_dog_lonely1" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_dog_lonely2" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_dog_lonely3" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_dog_lonely4" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_dog_lonely5" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_dog_lonely6" android:duration="500"></item>
+</animation-list>

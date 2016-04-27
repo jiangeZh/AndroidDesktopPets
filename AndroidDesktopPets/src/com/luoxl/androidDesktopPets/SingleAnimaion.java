@@ -45,9 +45,7 @@ public class SingleAnimaion {
 		 */
 		{
 			new Animation(R.drawable.pika_stay,2000),
-			//new Animation(R.drawable.pika_walk,4000),
-			//new Animation(R.drawable.pika_walk_to_right,4000),
-			//new Animation(R.drawable.pika_dead,4000),
+			//new Animation(R.drawable.pika_walk,5500),
 		},
 	
 		/*
@@ -55,9 +53,7 @@ public class SingleAnimaion {
 		 */
 		{
 			new Animation(R.drawable.sponge_stay,2000),
-			//new Animation(R.drawable.sponge_walk,4000),
-			//new Animation(R.drawable.sponge_walk_to_right,4000),
-			//new Animation(R.drawable.sponge_weak,4000),
+			//new Animation(R.drawable.sponge_walk,6000),
 		},
 		
 		/*
@@ -65,10 +61,10 @@ public class SingleAnimaion {
 		 */
 		{
 			new Animation(R.drawable.dog_stay,2000),
-			//new Animation(R.drawable.dog_bath,4000),
-			//new Animation(R.drawable.dog_feed,4000),
-			//new Animation(R.drawable.dog_lonely,4000),
-			//new Animation(R.drawable.dog_sleep,4000),
+			new Animation(R.drawable.dog_bath,8500),
+			new Animation(R.drawable.dog_feed,2000),
+			new Animation(R.drawable.dog_lonely,3000),
+			new Animation(R.drawable.dog_sleep,1500),
 		}
 	};
 }
