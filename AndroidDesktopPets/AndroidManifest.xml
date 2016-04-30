@@ -47,8 +47,8 @@
 				<action android:name="android.intent.action.BOOT_COMPLETED"/>
 			</intent-filter>
 		</receiver>
-		<activity android:name=".DeviceList" />
-        <activity android:name=".ModeActivity" />
+		<activity android:name="com.luoxl.androidDesktopPets.DeviceList"/>
+		<activity android:name="com.luoxl.androidDesktopPets.ModeActivity"/>
         <service android:name=".myBluetoothService"/>
         
         
