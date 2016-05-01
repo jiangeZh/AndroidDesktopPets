@@ -66,8 +66,9 @@ public class FloatWindowToolbarView extends LinearLayout {
 		bluetooth.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// 点击游戏时，显示蓝牙互动窗口
-				//MyWindowManager.
+				Intent bluetooth = new Intent(context,ModeActivity.class);
+				bluetooth.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+		        context.startActivity(bluetooth);
 			}
 		});
 		

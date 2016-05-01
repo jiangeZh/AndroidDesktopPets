@@ -24,6 +24,8 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
+        public static final int bluetooth_spp_padding=0x7f060003;
+        public static final int bluetooth_spp_text_size=0x7f060002;
     }
     public static final class drawable {
         public static final int alert_dialog_icon=0x7f020000;
@@ -672,20 +674,22 @@ public final class R {
         public static final int yellow_ok=0x7f020283;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0014;
-        public static final int big_window_layout=0x7f0a000b;
-        public static final int bluetooth=0x7f0a000e;
+        public static final int action_settings=0x7f0a0016;
+        public static final int big_window_layout=0x7f0a000d;
+        public static final int bluetooth=0x7f0a0010;
+        public static final int button_scan=0x7f0a000c;
         public static final int character=0x7f0a0007;
-        public static final int clock=0x7f0a000d;
-        public static final int exit=0x7f0a0011;
-        public static final int home=0x7f0a000c;
+        public static final int clock=0x7f0a000f;
+        public static final int exit=0x7f0a0013;
+        public static final int home=0x7f0a000e;
         public static final int imageView1=0x7f0a0003;
+        public static final int list_devices=0x7f0a000b;
         public static final int name=0x7f0a0002;
-        public static final int next=0x7f0a0010;
-        public static final int pet=0x7f0a0013;
-        public static final int set=0x7f0a000f;
+        public static final int next=0x7f0a0012;
+        public static final int pet=0x7f0a0015;
+        public static final int set=0x7f0a0011;
         public static final int sex=0x7f0a0005;
-        public static final int small_window_layout=0x7f0a0012;
+        public static final int small_window_layout=0x7f0a0014;
         public static final int start_float_window=0x7f0a0000;
         public static final int textView=0x7f0a0004;
         public static final int textView1=0x7f0a0001;
@@ -696,9 +700,12 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_show_pet_info=0x7f030001;
-        public static final int float_window_big=0x7f030002;
-        public static final int float_window_small=0x7f030003;
+        public static final int activity_mode=0x7f030001;
+        public static final int activity_show_pet_info=0x7f030002;
+        public static final int device_list=0x7f030003;
+        public static final int device_name=0x7f030004;
+        public static final int float_window_big=0x7f030005;
+        public static final int float_window_small=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f090000;
