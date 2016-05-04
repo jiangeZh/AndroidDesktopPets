@@ -1,5 +1,6 @@
 package com.luoxl.androidDesktopPets;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
@@ -70,8 +71,22 @@ public class Setting extends PreferenceActivity implements OnSharedPreferenceCha
 //            start.setSummary(sharedPreferences.getString(key, ""));
         } else if(key.equals(Consts.NOTICE_KEY)) {
 //            notice.setSummary(sharedPreferences.getString(key, ""));
+        	openSetting();
         } else if(key.equals(Consts.MUSIC_KEY)) {
 //            music.setSummary(sharedPreferences.getString(key,""));
         }
     }
+    
+	private void openSetting()
+	{
+		try
+		{
+			Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
+			startActivity(intent);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+    
 }

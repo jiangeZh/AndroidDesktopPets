@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical"
+    android:id="@+id/message_window_layout" 
+    android:background="@drawable/infopush_dialog_up" 
+    android:layout_width="200dp" 
+    android:layout_height="200dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TextView
+            android:id="@+id/inform_text"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="49dp"
+            android:text="helloWorld"
+            android:singleLine="false"
+            android:textSize="15.0dip" />
+
+        <Button
+            android:id="@+id/inform_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/inform_cancel"
+            android:layout_alignBottom="@+id/inform_cancel"
+            android:layout_alignLeft="@+id/inform_text"
+            android:layout_marginLeft="21dp"
+            android:text="查看"
+            android:textSize="10.0dip" />
+
+        <Button
+            android:id="@+id/inform_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/inform_text"
+            android:layout_marginTop="42dp"
+            android:layout_toRightOf="@+id/inform_ok"
+            android:text="忽略"
+            android:textSize="10.0dip" />
+
+</RelativeLayout>

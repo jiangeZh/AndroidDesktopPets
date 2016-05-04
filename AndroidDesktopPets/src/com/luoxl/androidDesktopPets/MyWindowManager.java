@@ -2,11 +2,14 @@ package com.luoxl.androidDesktopPets;
 
 
 import android.app.ActivityManager;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+import android.view.accessibility.AccessibilityEvent;
 
 public class MyWindowManager {
 
@@ -24,12 +27,21 @@ public class MyWindowManager {
 	 * 小悬浮窗View的参数
 	 */
 	private static LayoutParams smallWindowParams;
+	
+	/**
+	 * 消息框View的实例
+	 */
+	private static FloatWindowMessageView messageWindow;
 
 	/**
 	 * 大悬浮窗View的参数
 	 */
 	private static LayoutParams bigWindowParams;
-
+	/**
+	 * 消息框View的参数
+	 */
+	private static LayoutParams messageWindowParams;
+	
 	/**
 	 * 用于控制在屏幕上添加或移除悬浮窗
 	 */
@@ -137,6 +149,49 @@ public class MyWindowManager {
 		}
 	}
 	
+	/**
+	 * 创建一个消息悬浮窗。初始位置为屏幕的右部中间位置。
+	 * 
+	 * @param context
+	 *            必须为应用程序的Context.
+	 */
+	public static void createMessageWindow(Context context, PendingIntent pendingIntent) {
+		WindowManager windowManager = getWindowManager(context);
+		int screenWidth = windowManager.getDefaultDisplay().getWidth();
+		int screenHeight = windowManager.getDefaultDisplay().getHeight();
+		if (messageWindow == null) {
+			messageWindow = new FloatWindowMessageView(context, pendingIntent);
+			if (messageWindowParams == null) {
+				messageWindowParams = new LayoutParams();
+				messageWindowParams.type = LayoutParams.TYPE_PHONE;
+				messageWindowParams.format = PixelFormat.RGBA_8888;
+				messageWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL
+						| LayoutParams.FLAG_NOT_FOCUSABLE;
+				messageWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
+				messageWindowParams.width = FloatWindowMessageView.viewWidth;
+				messageWindowParams.height = FloatWindowMessageView.viewHeight;
+			}
+			messageWindowParams.x = smallWindowParams.x + FloatWindowPetView.viewWidth;
+			messageWindowParams.y = smallWindowParams.y - FloatWindowPetView.viewHeight;
+			windowManager.addView(messageWindow, messageWindowParams);
+		}
+	}
+	
+	/**
+	 * 进入微信消息页面并移除消息框
+	 * 
+	 * @param context
+	 *            必须为应用程序的Context.
+	 */
+	public static void readMessage(Context context, PendingIntent pendingIntent) {
+		try {
+			pendingIntent.send();
+			removeMessageWindow(context);
+		} catch (PendingIntent.CanceledException e)
+		{
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * 将大悬浮窗从屏幕上移除。
@@ -151,7 +206,21 @@ public class MyWindowManager {
 			bigWindow = null;
 		}
 	}
-
+	
+	
+	/**
+	 * 将消息悬浮窗从屏幕上移除。
+	 * 
+	 * @param context
+	 *            必须为应用程序的Context.
+	 */
+	public static void removeMessageWindow(Context context) {
+		if (messageWindow != null) {
+			WindowManager windowManager = getWindowManager(context);
+			windowManager.removeView(messageWindow);
+			messageWindow = null;
+		}
+	}
 
 	/**
 	 * 是否有悬浮窗(包括小悬浮窗和大悬浮窗)显示在屏幕上。
