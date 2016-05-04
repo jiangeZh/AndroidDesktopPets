@@ -6,7 +6,10 @@ import android.accessibilityservice.AccessibilityService;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.view.accessibility.AccessibilityEvent;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
 import android.content.Context;
 
@@ -62,12 +65,6 @@ public class WeChatMessagePushService extends AccessibilityService
 		String str_package = String.valueOf(mypackage);
 		if (str_package.equals(WECHAT_PACKAGENAME))
 		{
-			/*
-			 * 获取消息内容
-			 */
-			List<CharSequence> texts = event.getText();
-			String text = String.valueOf(texts.get(texts.size()));
-			
 			openMessageWindow(event);
 		}
 	}
@@ -80,9 +77,18 @@ public class WeChatMessagePushService extends AccessibilityService
 		{
 			return;
 		}
+		/*
+		 * 获取消息内容
+		 */
+		List<CharSequence> texts = event.getText();
+		String text = String.valueOf(texts.get(texts.size()-1));
+		if (text.length() > 15) {
+			text = text.substring(0, 15);
+			text += "...";
+		}
 		Notification notification = (Notification) event.getParcelableData();
 		PendingIntent pendingIntent = notification.contentIntent;		
-		MyWindowManager.createMessageWindow(this, pendingIntent);
+		MyWindowManager.createMessageWindow(this, pendingIntent, text);
 	}
 	
 };

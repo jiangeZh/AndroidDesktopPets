@@ -155,12 +155,12 @@ public class MyWindowManager {
 	 * @param context
 	 *            必须为应用程序的Context.
 	 */
-	public static void createMessageWindow(Context context, PendingIntent pendingIntent) {
+	public static void createMessageWindow(Context context, PendingIntent pendingIntent, String text) {
 		WindowManager windowManager = getWindowManager(context);
 		int screenWidth = windowManager.getDefaultDisplay().getWidth();
 		int screenHeight = windowManager.getDefaultDisplay().getHeight();
 		if (messageWindow == null) {
-			messageWindow = new FloatWindowMessageView(context, pendingIntent);
+			messageWindow = new FloatWindowMessageView(context, pendingIntent, text);
 			if (messageWindowParams == null) {
 				messageWindowParams = new LayoutParams();
 				messageWindowParams.type = LayoutParams.TYPE_PHONE;

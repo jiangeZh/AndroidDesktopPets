@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 public class FloatWindowMessageView extends LinearLayout{
 	/**
 	 * 记录消息框的宽度
@@ -26,10 +27,12 @@ public class FloatWindowMessageView extends LinearLayout{
 	 */
 	public static AccessibilityEvent myEvent;
 	
-	public FloatWindowMessageView(final Context context,  final PendingIntent pendingIntent) {
+	public FloatWindowMessageView(final Context context,  final PendingIntent pendingIntent, final String text) {
 		super(context);
 		LayoutInflater.from(context).inflate(R.layout.float_window_message, this);
 		View view = findViewById(R.id.message_window_layout);
+		TextView textView = (TextView)view.findViewById(R.id.inform_text);
+		textView.setText(text);
 		viewWidth = view.getLayoutParams().width;
 		viewHeight = view.getLayoutParams().height;
 		Button ok = (Button) findViewById(R.id.inform_ok);
