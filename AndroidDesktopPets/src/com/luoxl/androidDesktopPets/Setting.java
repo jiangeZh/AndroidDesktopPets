@@ -5,19 +5,22 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceScreen;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 
-public class Setting extends PreferenceActivity implements OnSharedPreferenceChangeListener {
+public class Setting extends PreferenceActivity 
+	implements OnSharedPreferenceChangeListener, OnPreferenceClickListener {
 
     private EditTextPreference name;
     private ListPreference sex;
     private EditTextPreference year;
     private ListPreference character;
     private CheckBoxPreference start;
-    private CheckBoxPreference notice;
-    private CheckBoxPreference music;
+    private PreferenceScreen notice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,8 @@ public class Setting extends PreferenceActivity implements OnSharedPreferenceCha
         year = (EditTextPreference)findPreference((Consts.YEAR_KEY));
         character = (ListPreference)findPreference(Consts.CHARACTER_KEY);
         start = (CheckBoxPreference)findPreference((Consts.START_KEY));
-        notice = (CheckBoxPreference)findPreference(Consts.NOTICE_KEY);
-        music = (CheckBoxPreference)findPreference(Consts.MUSIC_KEY);
+        notice = (PreferenceScreen)findPreference(Consts.NOTICE_KEY);
+        notice.setOnPreferenceClickListener(this);
     }
 
     @Override
@@ -69,13 +72,8 @@ public class Setting extends PreferenceActivity implements OnSharedPreferenceCha
             character.setSummary(sharedPreferences.getString(key, ""));
         } else if(key.equals(Consts.START_KEY)) {
 //            start.setSummary(sharedPreferences.getString(key, ""));
-        } else if(key.equals(Consts.NOTICE_KEY)) {
-//            notice.setSummary(sharedPreferences.getString(key, ""));
-        	openSetting();
-        } else if(key.equals(Consts.MUSIC_KEY)) {
-//            music.setSummary(sharedPreferences.getString(key,""));
         }
-    }
+    } 
     
 	private void openSetting()
 	{
@@ -87,6 +85,20 @@ public class Setting extends PreferenceActivity implements OnSharedPreferenceCha
 		{
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean onPreferenceClick(Preference preference) {
+		//判断是哪个Preference被点击了
+		if(preference.getKey().equals(Consts.NOTICE_KEY))
+		{
+			openSetting();
+		}
+		else
+		{
+			return false;
+		}
+		return true;
 	}
     
 }

@@ -171,8 +171,8 @@ public class MyWindowManager {
 				messageWindowParams.width = FloatWindowMessageView.viewWidth;
 				messageWindowParams.height = FloatWindowMessageView.viewHeight;
 			}
-			messageWindowParams.x = smallWindowParams.x + FloatWindowPetView.viewWidth;
-			messageWindowParams.y = smallWindowParams.y - FloatWindowPetView.viewHeight;
+			messageWindowParams.x = smallWindowParams.x - FloatWindowPetView.viewWidth;
+			messageWindowParams.y = (int) (smallWindowParams.y - 1.5*FloatWindowPetView.viewHeight);
 			windowManager.addView(messageWindow, messageWindowParams);
 		}
 	}

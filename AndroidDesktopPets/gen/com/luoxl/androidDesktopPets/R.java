@@ -683,8 +683,8 @@ public final class R {
         public static final int exit=0x7f0a0013;
         public static final int home=0x7f0a000e;
         public static final int imageView1=0x7f0a0003;
-        public static final int inform_cancel=0x7f0a0017;
-        public static final int inform_ok=0x7f0a0016;
+        public static final int inform_cancel=0x7f0a0016;
+        public static final int inform_ok=0x7f0a0017;
         public static final int inform_text=0x7f0a0015;
         public static final int list_devices=0x7f0a000b;
         public static final int message_window_layout=0x7f0a0014;

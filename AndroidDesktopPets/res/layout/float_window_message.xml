@@ -10,6 +10,7 @@
             android:id="@+id/inform_text"
             android:layout_width="150dp"
             android:layout_height="80dp"
+            android:textColor="#ff00ff"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="24dp"
@@ -19,24 +20,25 @@
             android:textSize="15.0dip" />
 
         <Button
-            android:id="@+id/inform_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/inform_cancel"
-            android:layout_alignBottom="@+id/inform_cancel"
-            android:layout_alignLeft="@+id/inform_text"
-            android:layout_marginLeft="21dp"
-            android:text="查看"
-            android:textSize="10.0dip" />
+            android:id="@+id/inform_cancel"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_alignBaseline="@+id/inform_ok"
+            android:layout_alignBottom="@+id/inform_ok"
+            android:layout_alignRight="@+id/inform_text"
+            android:background="@drawable/button_green_big"
+            android:text="忽略"
+            android:textColor="#ffffff" />
 
         <Button
-            android:id="@+id/inform_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/inform_text"
-            android:layout_marginTop="42dp"
-            android:layout_toRightOf="@+id/inform_ok"
-            android:text="忽略"
-            android:textSize="10.0dip" />
+            android:id="@+id/inform_ok"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="55dp"
+            android:layout_toLeftOf="@+id/inform_cancel"
+            android:background="@drawable/button_green_big"
+            android:text="查看"
+            android:textColor="#ffffff" />
 
 </RelativeLayout>

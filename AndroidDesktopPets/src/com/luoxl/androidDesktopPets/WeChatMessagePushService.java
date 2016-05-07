@@ -88,6 +88,7 @@ public class WeChatMessagePushService extends AccessibilityService
 		}
 		Notification notification = (Notification) event.getParcelableData();
 		PendingIntent pendingIntent = notification.contentIntent;		
+		MyWindowManager.removeMessageWindow(this);
 		MyWindowManager.createMessageWindow(this, pendingIntent, text);
 	}
 	

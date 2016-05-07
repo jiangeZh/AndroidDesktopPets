@@ -40,17 +40,11 @@
             android:summary="随机启动并不会影响系统正常使用"
             android:title="是否随机启动"
             />
-        <CheckBoxPreference
+        <PreferenceScreen 
             android:key="notice_key"
-            android:defaultValue=""
-            android:summary="勾选可更方便的接受到微信通知"
-            android:title="是否允许获取微信通知"
-            />
-        <CheckBoxPreference
-            android:key="music_key"
-            android:defaultValue=""
-            android:summary="音乐可以使得宠物更有趣哦"
-            android:title="是否开启音效"
-            />
+            android:summary="可更方便的接收到微信通知"
+            android:title="开启获取微信通知服务"
+            >
+        </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>
