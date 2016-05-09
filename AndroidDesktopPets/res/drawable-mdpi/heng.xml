@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<animation-list
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:oneshot="true"
+  >
+    <item android:drawable="@drawable/pet_cat_heng10" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_cat_heng11" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_cat_heng12" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_cat_heng13" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_cat_heng14" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_cat_heng15" android:duration="500"></item>
+    <item android:drawable="@drawable/pet_cat_heng16" android:duration="500"></item>
+</animation-list>

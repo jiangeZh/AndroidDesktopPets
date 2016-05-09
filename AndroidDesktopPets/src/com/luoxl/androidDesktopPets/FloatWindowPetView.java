@@ -3,6 +3,7 @@ package com.luoxl.androidDesktopPets;
 import java.lang.reflect.Field;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.DisplayMetrics;
@@ -11,10 +12,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.View.OnLongClickListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -102,7 +105,7 @@ public class FloatWindowPetView extends LinearLayout {
 	private static int petIndex = 0;
 	private int petNum = 4;
 	
-	public FloatWindowPetView(Context context) {
+	public FloatWindowPetView(final Context context) {
 		super(context);
 		windowManager = (WindowManager) context
 				.getSystemService(Context.WINDOW_SERVICE);
@@ -116,8 +119,11 @@ public class FloatWindowPetView extends LinearLayout {
 		DisplayMetrics outMetrics = new DisplayMetrics();
 		windowManager.getDefaultDisplay().getMetrics(outMetrics);
 		swidth = outMetrics.widthPixels;
+		MyWindowManager.init(getContext());
 	}
 
+
+	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
@@ -166,6 +172,8 @@ public class FloatWindowPetView extends LinearLayout {
 					closeBigWindow();
 					isOpenBigWin = false;
 				}
+				
+				
 				updateViewPosition3();
 			}
 			petView.setBackgroundResource(petStayModelID[petIndex]);
@@ -279,11 +287,19 @@ public class FloatWindowPetView extends LinearLayout {
 		MyWindowManager.createBigWindow(getContext());
 	}
 	
+	private void openBluetooth() {
+		MyWindowManager.createBluetoothMessageWindow(getContext());
+	}
+	
 	/**
 	 * 关闭大悬浮窗
 	 */
 	private void closeBigWindow() {
 		MyWindowManager.removeBigWindow(getContext());
+	}
+	
+	private void closeBluetooth() {
+		MyWindowManager.removeBluetoothMessageWindow(getContext());
 	}
 
 	/**

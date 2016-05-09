@@ -1,8 +1,13 @@
 package com.luoxl.androidDesktopPets;
 
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.View.OnLongClickListener;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -50,12 +55,21 @@ public class myBluetoothManager {
         bt.setContext(context);
     }
 
+    private static void openBluetooth(Context context) {
+		MyWindowManager.createBluetoothMessageWindow(context);
+	}
+    
+    private static void openBluetooth(Context context, String message) {
+		MyWindowManager.createBluetoothMessageWindow(context, message);
+	}
+    
     public static void setMyaddress(String myaddress){ Myaddress = new String(myaddress);}
 
     public static void setReceivedListener(final Context context) {
         bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() {
             public void onDataReceived(byte[] data, String message) {
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                //Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+            	openBluetooth(context, message);
             }
         });
     }
@@ -66,6 +80,7 @@ public class myBluetoothManager {
 
             //定时发送消息
             public void onDeviceConnected(String name, String address) {
+            	/*
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -84,8 +99,22 @@ public class myBluetoothManager {
                     }
                 });
                 thread.start();
+                */
+                FloatWindowPetView.petView.setClickable(true);
+            	FloatWindowPetView.petView.setOnLongClickListener(new OnLongClickListener(){
+
+					@Override
+					public boolean onLongClick(View v) {
+						// TODO Auto-generated method stub
+						// TODO Auto-generated method stub
+						openBluetooth(context);
+						return false;
+					}
+            		
+            	});
             }
             public void onDeviceDisconnected() {
+            		FloatWindowPetView.petView.setClickable(false);
                     Toast.makeText(context, "连接中断", Toast.LENGTH_SHORT).show();
                     stop(bt.getmContext());
             }

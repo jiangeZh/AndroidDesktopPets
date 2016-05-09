@@ -6,6 +6,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
@@ -32,6 +33,10 @@ public class MyWindowManager {
 	 * 消息框View的实例
 	 */
 	private static FloatWindowMessageView messageWindow;
+	
+	private static BluetoothMessageWindow bluetoothMessageWindow;
+	
+	private static LayoutParams bluetoothMessageWindowParams;
 
 	/**
 	 * 大悬浮窗View的参数
@@ -51,6 +56,8 @@ public class MyWindowManager {
 	 * 用于获取手机可用内存
 	 */
 	private static ActivityManager mActivityManager;
+	
+	private static boolean flag = false;
 
 	/**
 	 * 创建一个小悬浮窗。初始位置为屏幕的右部中间位置。
@@ -107,20 +114,22 @@ public class MyWindowManager {
 		int screenHeight = windowManager.getDefaultDisplay().getHeight();
 		if (bigWindow == null) {
 			bigWindow = new FloatWindowToolbarView(context);
-			if (bigWindowParams == null) {
-				bigWindowParams = new LayoutParams();
-				bigWindowParams.type = LayoutParams.TYPE_PHONE;
-				bigWindowParams.format = PixelFormat.RGBA_8888;
-				bigWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
-				bigWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
-				bigWindowParams.width = FloatWindowToolbarView.viewWidth;
-				bigWindowParams.height = FloatWindowToolbarView.viewHeight;
-			}
-			bigWindowParams.x = smallWindowParams.x - FloatWindowPetView.viewWidth;
-			bigWindowParams.y = smallWindowParams.y + FloatWindowPetView.viewHeight;
-			windowManager.addView(bigWindow, bigWindowParams);
 		}
+		if (bigWindowParams == null) {
+			bigWindowParams = new LayoutParams();
+			bigWindowParams.type = LayoutParams.TYPE_PHONE;
+			bigWindowParams.format = PixelFormat.RGB_565;
+			bigWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
+			bigWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
+			bigWindowParams.width = FloatWindowToolbarView.viewWidth;
+			bigWindowParams.height = FloatWindowToolbarView.viewHeight;
+		}
+		bigWindowParams.x = smallWindowParams.x - FloatWindowPetView.viewWidth;
+		bigWindowParams.y = smallWindowParams.y + FloatWindowPetView.viewHeight;
+		windowManager.addView(bigWindow, bigWindowParams);
+		flag = true;
 	}
+
 
 	/**
 	 * 创建一个蓝牙链接窗口
@@ -146,6 +155,53 @@ public class MyWindowManager {
 			bigWindowParams.x = smallWindowParams.x - FloatWindowPetView.viewWidth;
 			bigWindowParams.y = smallWindowParams.y + FloatWindowPetView.viewHeight;
 			windowManager.addView(bigWindow, bigWindowParams);
+			flag = true;
+		}
+	}
+	
+	public static void createBluetoothMessageWindow(Context context) {
+		Log.d("MyWindowManager","CreateBluetoothMessage");
+		WindowManager windowManager = getWindowManager(context);
+		int screenWidth = windowManager.getDefaultDisplay().getWidth();
+		int screenHeight = windowManager.getDefaultDisplay().getHeight();
+		if (bluetoothMessageWindow == null) {
+			bluetoothMessageWindow = new BluetoothMessageWindow(context);
+			if (bluetoothMessageWindowParams == null) {
+				bluetoothMessageWindowParams = new LayoutParams();
+				bluetoothMessageWindowParams.type = LayoutParams.TYPE_PHONE;
+				bluetoothMessageWindowParams.format = PixelFormat.RGBA_8888;
+				bluetoothMessageWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
+				bluetoothMessageWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
+				bluetoothMessageWindowParams.width = BluetoothMessageWindow.viewWidth;
+				bluetoothMessageWindowParams.height = BluetoothMessageWindow.viewHeight;
+			}
+			bluetoothMessageWindowParams.x = smallWindowParams.x - FloatWindowPetView.viewWidth;
+			bluetoothMessageWindowParams.y = (int) (smallWindowParams.y - 1.5*FloatWindowPetView.viewHeight);
+			
+			windowManager.addView(bluetoothMessageWindow, bluetoothMessageWindowParams);
+		}
+	}
+	
+	public static void createBluetoothMessageWindow(Context context, String message) {
+		Log.d("MyWindowManager","CreateBluetoothMessage");
+		WindowManager windowManager = getWindowManager(context);
+		int screenWidth = windowManager.getDefaultDisplay().getWidth();
+		int screenHeight = windowManager.getDefaultDisplay().getHeight();
+		if (bluetoothMessageWindow == null) {
+			bluetoothMessageWindow = new BluetoothMessageWindow(context, message);
+			if (bluetoothMessageWindowParams == null) {
+				bluetoothMessageWindowParams = new LayoutParams();
+				bluetoothMessageWindowParams.type = LayoutParams.TYPE_PHONE;
+				bluetoothMessageWindowParams.format = PixelFormat.RGBA_8888;
+				bluetoothMessageWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
+				bluetoothMessageWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
+				bluetoothMessageWindowParams.width = BluetoothMessageWindow.viewWidth;
+				bluetoothMessageWindowParams.height = BluetoothMessageWindow.viewHeight;
+			}
+			bluetoothMessageWindowParams.x = smallWindowParams.x - FloatWindowPetView.viewWidth;
+			bluetoothMessageWindowParams.y = (int) (smallWindowParams.y - 1.5*FloatWindowPetView.viewHeight);
+			
+			windowManager.addView(bluetoothMessageWindow, bluetoothMessageWindowParams);
 		}
 	}
 	
@@ -199,11 +255,20 @@ public class MyWindowManager {
 	 * @param context
 	 *            必须为应用程序的Context.
 	 */
+	public static void removeBluetoothMessageWindow(Context context) {
+		if (bluetoothMessageWindow != null) {
+			WindowManager windowManager = getWindowManager(context);
+			windowManager.removeView(bluetoothMessageWindow);
+			bluetoothMessageWindow = null;
+		}
+	}
+	
 	public static void removeBigWindow(Context context) {
-		if (bigWindow != null) {
+		if (flag) {
 			WindowManager windowManager = getWindowManager(context);
 			windowManager.removeView(bigWindow);
-			bigWindow = null;
+			flag = false;
+			//bigWindow = null;
 		}
 	}
 	
@@ -228,7 +293,7 @@ public class MyWindowManager {
 	 * @return 有悬浮窗显示在桌面上返回true，没有的话返回false。
 	 */
 	public static boolean isWindowShowing() {
-		return smallWindow != null || bigWindow != null;
+		return smallWindow != null || flag;
 	}
 
 	/**
@@ -267,6 +332,21 @@ public class MyWindowManager {
 	 */
 	public static void changePetModel(Context context) {
 		smallWindow.changePetModel();
+	}
+	
+	public static void init(Context context) {
+		if (bigWindow == null) {
+			bigWindow = new FloatWindowToolbarView(context);
+			if (bigWindowParams == null) {
+				bigWindowParams = new LayoutParams();
+				bigWindowParams.type = LayoutParams.TYPE_PHONE;
+				bigWindowParams.format = PixelFormat.RGB_565;
+				bigWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL;
+				bigWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
+				bigWindowParams.width = FloatWindowToolbarView.viewWidth;
+				bigWindowParams.height = FloatWindowToolbarView.viewHeight;
+			}
+		}
 	}
 
 }
